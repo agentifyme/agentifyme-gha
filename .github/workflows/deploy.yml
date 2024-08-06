@@ -1,0 +1,14 @@
+name: Deploy
+
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Deploy
+        uses: agentifyme/agentifyme-gha@main
+        with:
+          environment: 'production'

@@ -1,0 +1,29 @@
+name: 'Deploy to AgentifyMe'
+description: 'Deploys your projects to the AgentifyMe platform'
+branding:
+  icon: "upload-cloud"
+  color: "blue"
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+inputs:
+  api-token:
+    description: "Your AgentifyMe API token"
+    required: false
+  project-ref:
+    description: "Your AgentifyMe project reference"
+    required: false
+  environment:
+    description: "The environment to deploy to"
+    required: false
+
+outputs:
+  command-output:
+    description: "The output of the command"
+  command-stderr:
+    description: "The error output of the command"
+  deployment-url:
+    description: "The URL of the deployment"
+ 
