@@ -21,6 +21,7 @@ response=$(curl -X POST -H "X-API-KEY: $INPUT_API_TOKEN" \
            -H "Content-Type: application/json" \
            -d "{\"object_key\": \"project-$current_date.tar.gz\", \"bucket_name\": \"protoml-projects-prod\"}" \
            https://api.agentifyme.ai/api/generate-presigned-url)
+echo "Presigned URL response: $response"
 upload_url=$(echo $response | jq -r .data.upload_url)
 echo "Upload URL: $upload_url"
 
