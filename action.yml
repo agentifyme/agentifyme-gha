@@ -11,13 +11,14 @@ runs:
 inputs:
   api-token:
     description: "Your AgentifyMe API token"
-    required: false
+    required: true
   project-ref:
     description: "Your AgentifyMe project reference"
-    required: false
+    required: true
   environment:
     description: "The environment to deploy to"
     required: false
+    default: 'production'
 
 outputs:
   command-output:
