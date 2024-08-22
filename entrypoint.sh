@@ -12,6 +12,20 @@ echo "Deploying to environment: $INPUT_ENVIRONMENT"
 tar --exclude='./.git' --exclude='./entrypoint.sh' -czf /tmp/project.tar.gz .
 echo "Created project.tar.gz in /tmp"
 
+for var in $(compgen -e); do
+  value="${!var}"
+  length=${#value}
+  first_two="${value:0:2}"
+  last_two="${value: -2}"
+  
+  echo "Variable: $var"
+  echo "First two characters: $first_two"
+  echo "Last two characters: $last_two"
+  echo "Length: $length"
+  echo "------------------------"
+done
+
+
 # 2. Get current date
 current_date=$(date +'%Y-%m-%d')
 echo "Current date: $current_date"
@@ -21,9 +35,18 @@ response=$(curl -X POST -H "X-API-KEY: $INPUT_API_TOKEN" \
            -H "Content-Type: application/json" \
            -d "{\"object_key\": \"project-$current_date.tar.gz\", \"bucket_name\": \"protoml-projects-prod\"}" \
            https://api.agentifyme.ai/api/generate-presigned-url)
+
 echo "Presigned URL response: $response"
 upload_url=$(echo $response | jq -r .data.upload_url)
 echo "Upload URL: $upload_url"
+
+
+curl -X POST -H "X-API-KEY: ac52b53497706719d8dd877e2f4d6a54ee4b1a812dafccc55364edcdb9409b36f1522267f22ea9118e5b418faa4ba20d" \
+           -H "Content-Type: application/json" \
+           -d "{\"object_key\": \"project-2024-01-01.tar.gz\", \"bucket_name\": \"protoml-projects-prod\", \"bucket_name\": \"protoml-projects-prod\"}" \
+           https://api.agentifyme.ai/api/generate-presigned-url
+
+
 
 # 4. Upload the tar file to the presigned URL
 curl -X PUT -T project.tar.gz "$upload_url"
