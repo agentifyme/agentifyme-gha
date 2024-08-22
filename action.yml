@@ -9,10 +9,10 @@ runs:
   image: 'Dockerfile'
 
 inputs:
-  api-token:
+  api_token:
     description: "Your AgentifyMe API token"
     required: true
-  project-ref:
+  project_ref:
     description: "Your AgentifyMe project reference"
     required: true
   environment:
