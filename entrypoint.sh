@@ -46,4 +46,4 @@ echo `agentifyme version`
 agentifyme auth login --api-key $INPUT_API_TOKEN
 
 # 3. Execute the deploy command
-agenitfyme deploy
+agentifyme deploy
