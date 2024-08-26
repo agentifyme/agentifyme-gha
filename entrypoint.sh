@@ -11,6 +11,39 @@ ls -la
 
 echo "Deploying to environment: $INPUT_ENVIRONMENT"
 
+
+echo "===== Ubuntu System Information ====="
+
+# OS Version
+echo -n "OS Version: "
+lsb_release -d | cut -f2-
+
+# Kernel Version
+echo -n "Kernel Version: "
+uname -r
+
+# CPU Information
+echo "CPU Information:"
+lscpu | grep "Model name" | sed 's/Model name: *//'
+
+# Memory Information
+echo "Memory Information:"
+free -h | grep Mem | awk '{print $2 " total, " $3 " used, " $4 " free"}'
+
+# Disk Usage
+echo "Disk Usage:"
+df -h / | tail -n 1 | awk '{print $2 " total, " $3 " used, " $4 " available"}'
+
+# Network Interfaces
+echo "Network Interfaces:"
+ip -o addr show | awk '{print $2 ": " $4}' | grep -v ": 127.0.0.1"
+
+# System Uptime
+echo -n "System Uptime: "
+uptime -p
+
+echo "===== End of System Information ====="
+
 # Prerequisites
 ldd --version
 curl --version
