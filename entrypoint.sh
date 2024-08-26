@@ -34,14 +34,6 @@ free -h | grep Mem | awk '{print $2 " total, " $3 " used, " $4 " free"}'
 echo "Disk Usage:"
 df -h / | tail -n 1 | awk '{print $2 " total, " $3 " used, " $4 " available"}'
 
-# Network Interfaces
-echo "Network Interfaces:"
-ip -o addr show | awk '{print $2 ": " $4}' | grep -v ": 127.0.0.1"
-
-# System Uptime
-echo -n "System Uptime: "
-uptime -p
-
 echo "===== End of System Information ====="
 
 # Prerequisites
