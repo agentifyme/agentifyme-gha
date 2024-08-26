@@ -11,6 +11,10 @@ ls -la
 
 echo "Deploying to environment: $INPUT_ENVIRONMENT"
 
+# Prerequisites
+ldd --version
+curl --version
+jq --version
 
 # 1. Download the agentifyme CLI
 curl -sSL https://agentifyme.ai/install.sh | bash
