@@ -38,7 +38,7 @@ echo "===== End of System Information ====="
 
 
 # 1. Download the agentifyme CLI
-curl -sSL https://agentifyme.ai/install.sh | bash
+curl -LsSf https://agentifyme.ai/cli.sh | bash
 export PATH=$PATH:$HOME/.agentifyme/bin
 echo `agentifyme version`
 
