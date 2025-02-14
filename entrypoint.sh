@@ -43,7 +43,7 @@ export PATH=$PATH:$HOME/.agentifyme/bin
 echo `agentifyme version`
 
 # 2. Check if you can authenticate with the API
-agentifyme auth login --api-key $INPUT_API_TOKEN
+agentifyme login --api-key $INPUT_API_TOKEN
 
 # 3. Execute the deploy command
 agentifyme deploy
