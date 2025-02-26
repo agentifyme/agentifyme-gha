@@ -46,4 +46,8 @@ echo `agentifyme version`
 agentifyme login --api-key $INPUT_API_TOKEN
 
 # 3. Execute the deploy command
-agentifyme deploy
+if [ -n "$INPUT_ENVIRONMENT" ]; then
+  agentifyme deploy -e $INPUT_ENVIRONMENT
+else
+  agentifyme deploy
+fi
